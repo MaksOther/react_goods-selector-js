@@ -20,30 +20,32 @@ export const App = () => {
 
   return (
     <main className="section container">
-      {!selectedGood&& (
+      {!selectedGood && (
         <h1 className="title is-flex is-align-items-center">
           No goods selected
         </h1>
       )}
 
-      {selectedGood && <h1 className="title is-flex is-align-items-center">
-        {selectedGood} is selected
-        <button
-          data-cy="ClearButton"
-          type="button"
-          className="delete ml-3"
-          onClick={() => {
-            setSelectedGood('');
-          }}
-        />
-      </h1>}
+      {selectedGood && (
+        <h1 className="title is-flex is-align-items-center">
+          {selectedGood} is selected
+          <button
+            data-cy="ClearButton"
+            type="button"
+            className="delete ml-3"
+            onClick={() => {
+              setSelectedGood('');
+            }}
+          />
+        </h1>
+      )}
 
       <table className="table">
         <tbody>
           {goods.map(item => (
             <>
               {item !== selectedGood && (
-                <tr data-cy="Good">
+                <tr data-cy="Good" key={item}>
                   <td>
                     <button
                       data-cy="AddButton"
@@ -64,7 +66,7 @@ export const App = () => {
               )}
 
               {item === selectedGood && (
-                <tr data-cy="Good" className="has-background-success-light">
+                <tr data-cy="Good" className="has-background-success-light" key={item}>
                   <td>
                     <button
                       data-cy="RemoveButton"
